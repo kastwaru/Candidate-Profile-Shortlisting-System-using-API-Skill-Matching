@@ -46,7 +46,7 @@ const aiShortlist = async (candidates, jobRequirements) => {
       const response = await axios.post(
         OPENROUTER_API_URL,
         {
-        model: process.env.OPENROUTER_MODEL || 'google/gemini-2.0-flash-lite-preview-02-05:free',
+        model: process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.3-70b-instruct:free',
         messages: [{ role: 'user', content: prompt }],
         max_tokens: 2500,
         },
@@ -104,7 +104,7 @@ const aiChat = async (messages) => {
     const response = await axios.post(
       OPENROUTER_API_URL,
       {
-        model: process.env.OPENROUTER_MODEL || 'google/gemini-2.0-flash-lite-preview-02-05:free',
+        model: process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.3-70b-instruct:free',
         messages: [systemPrompt, ...messages],
         max_tokens: 1000,
       },
