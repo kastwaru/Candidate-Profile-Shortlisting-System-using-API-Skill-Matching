@@ -119,6 +119,10 @@ const aiChat = async (messages) => {
     return response.data.choices[0].message.content;
   } catch (error) {
     console.error('AI Chat Error:', error.response ? error.response.data : error.message);
+    const apiError = error.response?.data?.error?.message;
+    if (apiError) {
+      return `API Error: ${apiError}`;
+    }
     return "The AI model is currently overloaded with requests (Rate Limited). Please try sending your message again in a few seconds.";
   }
 };
