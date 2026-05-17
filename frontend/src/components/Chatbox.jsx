@@ -29,7 +29,8 @@ const Chatbox = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/chat', {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const response = await axios.post(`${API_URL}/chat`, {
         messages: [...messages, userMessage].map(m => ({
           role: m.role === 'ai' ? 'assistant' : 'user',
           content: m.content
