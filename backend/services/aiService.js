@@ -46,7 +46,7 @@ const aiShortlist = async (candidates, jobRequirements) => {
       const response = await axios.post(
         OPENROUTER_API_URL,
         {
-        model: process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.3-70b-instruct:free',
+        model: process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.2-3b-instruct:free',
         messages: [{ role: 'user', content: prompt }],
         max_tokens: 2500,
         },
@@ -54,6 +54,8 @@ const aiShortlist = async (candidates, jobRequirements) => {
           headers: {
             'Authorization': `Bearer ${apiKey}`,
             'Content-Type': 'application/json',
+            'HTTP-Referer': 'https://github.com/kastwaru',
+            'X-Title': 'AutoHire AI'
           },
         }
       );
@@ -104,7 +106,7 @@ const aiChat = async (messages) => {
     const response = await axios.post(
       OPENROUTER_API_URL,
       {
-        model: process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.3-70b-instruct:free',
+        model: process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.2-3b-instruct:free',
         messages: [systemPrompt, ...messages],
         max_tokens: 1000,
       },
@@ -112,6 +114,8 @@ const aiChat = async (messages) => {
         headers: {
           'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
+          'HTTP-Referer': 'https://github.com/kastwaru',
+          'X-Title': 'AutoHire AI'
         },
       }
     );
