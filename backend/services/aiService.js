@@ -46,9 +46,9 @@ const aiShortlist = async (candidates, jobRequirements) => {
       const response = await axios.post(
         OPENROUTER_API_URL,
         {
-          model: 'arcee-ai/trinity-large-thinking:free', // Use available free model
-          messages: [{ role: 'user', content: prompt }],
-          max_tokens: 2500,
+        model: process.env.OPENROUTER_MODEL || 'google/gemini-2.0-flash-lite-preview-02-05:free',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 2500,
         },
         {
           headers: {
@@ -104,7 +104,7 @@ const aiChat = async (messages) => {
     const response = await axios.post(
       OPENROUTER_API_URL,
       {
-        model: 'arcee-ai/trinity-large-thinking:free',
+        model: process.env.OPENROUTER_MODEL || 'google/gemini-2.0-flash-lite-preview-02-05:free',
         messages: [systemPrompt, ...messages],
         max_tokens: 1000,
       },
